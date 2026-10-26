@@ -41,7 +41,21 @@
       "reactCompiler": true
     },
     "extra": {
-      "router": {}
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "ff9e840d-b752-4e7e-8487-7d02c96a0020"
+      }
+    },
+    "owner": "hamzaatef95",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ff9e840d-b752-4e7e-8487-7d02c96a0020"
     }
   }
 }
