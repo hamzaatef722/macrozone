@@ -41,11 +41,7 @@
       "reactCompiler": true
     },
     "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "0ae0c1ba-cb39-44bb-8b98-a3959eee0126"
-      }
-    },
-    "owner": "hamzaatef95s-team"
+      "router": {}
+    }
   }
 }
