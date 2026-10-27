@@ -1,10 +1,9 @@
-import MealItem from '@/Components/MealItem';
-import { clearAllMeals, getMeals, Meal } from '@/storage/meals';
-import { globalStyles } from '@/styles/global';
-import { useFocusEffect } from 'expo-router';
-import { useCallback, useState } from 'react';
-import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-
+import MealItem from "@/Components/MealItem";
+import { clearAllMeals, getMeals, Meal } from "@/storage/meals";
+import { globalStyles } from "@/styles/global";
+import { useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
+import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function AllMealsScreen() {
   const [meals, setMeals] = useState<Meal[]>([]);
@@ -16,13 +15,13 @@ export default function AllMealsScreen() {
 
   const handleClearAll = () => {
     Alert.alert(
-      'Clear All Meals',
-      'Are you sure you want to delete all meals? This action cannot be undone.',
+      "Clear All Meals",
+      "Are you sure you want to delete all meals? This action cannot be undone.",
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: "Cancel", style: "cancel" },
         {
-          text: 'Delete All',
-          style: 'destructive',
+          text: "Delete All",
+          style: "destructive",
           onPress: async () => {
             await clearAllMeals();
             loadMeals();
@@ -59,7 +58,7 @@ export default function AllMealsScreen() {
               protein={meal.protein}
               carbs={meal.carbs}
               fat={meal.fat}
-              onDelete={loadMeals}
+              // onDelete={loadMeals}
             />
           ))
         )}
@@ -70,7 +69,7 @@ export default function AllMealsScreen() {
 
 const styles = {
   clearButton: {
-    color: 'red',
+    color: "red",
     fontSize: 16,
   },
 };

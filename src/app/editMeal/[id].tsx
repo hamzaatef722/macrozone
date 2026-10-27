@@ -1,27 +1,27 @@
-import { deleteMeal, getMealById, updateMeal } from '@/storage/meals';
-import { colors, globalStyles } from '@/styles/global';
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { getMealById, updateMeal } from "@/storage/meals";
+import { colors, globalStyles } from "@/styles/global";
+import * as Haptics from "expo-haptics";
+import { router, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import {
-  Alert,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import * as Haptics from 'expo-haptics';
+    Alert,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from "react-native";
 
 export default function EditMealScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const [name, setName] = useState('');
-  const [calories, setCalories] = useState('');
-  const [protein, setProtein] = useState('');
-  const [carbs, setCarbs] = useState('');
-  const [fat, setFat] = useState('');
+  const [name, setName] = useState("");
+  const [calories, setCalories] = useState("");
+  const [protein, setProtein] = useState("");
+  const [carbs, setCarbs] = useState("");
+  const [fat, setFat] = useState("");
 
   useEffect(() => {
     const load = async () => {
@@ -42,7 +42,7 @@ export default function EditMealScreen() {
 
   const handleConfirmEdit = async () => {
     if (!name || !calories) {
-      Alert.alert('Error', 'Please enter a meal name and calories.');
+      Alert.alert("Error", "Please enter a meal name and calories.");
       return;
     }
 
@@ -56,21 +56,6 @@ export default function EditMealScreen() {
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     router.back();
-  };
-
-  const handleDelete = () => {
-    Alert.alert('Delete Meal', `Are you sure you want to delete "${name}"?`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          await deleteMeal(id);
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          router.back();
-        },
-      },
-    ]);
   };
 
   if (loading) return null;
@@ -89,7 +74,7 @@ export default function EditMealScreen() {
 
       <TextInput
         style={styles.input}
-        placeholder='Meal name'
+        placeholder="Meal name"
         placeholderTextColor={colors.textSecondary}
         value={name}
         onChangeText={setName}
@@ -97,9 +82,9 @@ export default function EditMealScreen() {
 
       <TextInput
         style={styles.input}
-        placeholder='Calories'
+        placeholder="Calories"
         placeholderTextColor={colors.textSecondary}
-        keyboardType='numeric'
+        keyboardType="numeric"
         value={calories}
         onChangeText={setCalories}
       />
@@ -107,25 +92,25 @@ export default function EditMealScreen() {
       <View style={styles.row}>
         <TextInput
           style={[styles.input, styles.rowInput]}
-          placeholder='Protein (g)'
+          placeholder="Protein (g)"
           placeholderTextColor={colors.textSecondary}
-          keyboardType='numeric'
+          keyboardType="numeric"
           value={protein}
           onChangeText={setProtein}
         />
         <TextInput
           style={[styles.input, styles.rowInput]}
-          placeholder='Carbs (g)'
+          placeholder="Carbs (g)"
           placeholderTextColor={colors.textSecondary}
-          keyboardType='numeric'
+          keyboardType="numeric"
           value={carbs}
           onChangeText={setCarbs}
         />
         <TextInput
           style={[styles.input, styles.rowInput]}
-          placeholder='Fat (g)'
+          placeholder="Fat (g)"
           placeholderTextColor={colors.textSecondary}
-          keyboardType='numeric'
+          keyboardType="numeric"
           value={fat}
           onChangeText={setFat}
         />
@@ -133,10 +118,6 @@ export default function EditMealScreen() {
 
       <TouchableOpacity style={styles.button} onPress={handleConfirmEdit}>
         <Text style={styles.buttonText}>Confirm Edit</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
-        <Text style={styles.deleteButtonText}>Delete Meal</Text>
       </TouchableOpacity>
     </View>
   );
@@ -152,7 +133,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 10,
   },
   rowInput: {
@@ -162,25 +143,25 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     padding: 16,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 24,
   },
   buttonText: {
     color: colors.background,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   deleteButton: {
     borderWidth: 1,
-    borderColor: '#E53935',
+    borderColor: "#E53935",
     padding: 16,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 12,
   },
   deleteButtonText: {
-    color: '#E53935',
+    color: "#E53935",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });

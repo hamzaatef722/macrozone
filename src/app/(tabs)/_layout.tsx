@@ -1,10 +1,10 @@
-import { colors } from '@/styles/global';
-import { Ionicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
-import { ComponentProps } from 'react';
-import { ColorValue } from 'react-native';
+import { colors } from "@/styles/global";
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { ComponentProps } from "react";
+import { ColorValue } from "react-native";
 
-type IconName = ComponentProps<typeof Ionicons>['name'];
+type IconName = ComponentProps<typeof Ionicons>["name"];
 
 const tabIcon =
   (name: IconName) =>
@@ -26,16 +26,20 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name='Home'
-        options={{ title: 'Home', tabBarIcon: tabIcon('home') }}
+        name="Home"
+        options={{ title: "Home", tabBarIcon: tabIcon("home") }}
+      />
+        <Tabs.Screen
+          name="BrowseMealScreen"
+          options={{ title: "Browse", tabBarIcon: tabIcon("search") }}
+        />
+      <Tabs.Screen
+        name="AddMeals"
+        options={{ title: "Add Meal", tabBarIcon: tabIcon("add-circle") }}
       />
       <Tabs.Screen
-        name='AddMeals'
-        options={{ title: 'Add Meal', tabBarIcon: tabIcon('add-circle') }}
-      />
-      <Tabs.Screen
-        name='Meals'
-        options={{ title: 'All Meals', tabBarIcon: tabIcon('list') }}
+        name="Meals"
+        options={{ title: "All Meals", tabBarIcon: tabIcon("list") }}
       />
     </Tabs>
   );
