@@ -1,7 +1,6 @@
-import { Alert, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { deleteMeal } from '@/storage/meals';
-import { colors } from '@/styles/global';
-import * as Haptics from 'expo-haptics';
+import { colors } from "@/styles/global";
+import { useRouter } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 type MealItemProps = {
   id: string;
@@ -10,7 +9,6 @@ type MealItemProps = {
   protein: number;
   carbs: number;
   fat: number;
-  onDelete: () => void;
 };
 
 export default function MealItem({
@@ -20,25 +18,19 @@ export default function MealItem({
   protein,
   carbs,
   fat,
-  onDelete,
 }: MealItemProps) {
-  const handleLongPress = () => {
-    Alert.alert('Delete Meal', `Are you sure you want to delete "${name}"?`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          await deleteMeal(id);
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          onDelete();
-        },
-      },
-    ]);
-  };
+  const router = useRouter();
 
   return (
-    <TouchableOpacity style={styles.container} onLongPress={handleLongPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        router.push({
+          pathname: "/editMeal/[id]",
+          params: { id },
+        })
+      }
+    >
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.macros}>
         {calories} cal • {protein}g P • {carbs}g C • {fat}g F
@@ -56,7 +48,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.text,
   },
   macros: {
