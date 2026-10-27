@@ -29,17 +29,17 @@ export default function TabLayout() {
         name="Home"
         options={{ title: "Home", tabBarIcon: tabIcon("home") }}
       />
-        <Tabs.Screen
-          name="BrowseMealScreen"
-          options={{ title: "Browse", tabBarIcon: tabIcon("search") }}
-        />
+      <Tabs.Screen
+        name="BrowseMealScreen"
+        options={{ title: "Browse", tabBarIcon: tabIcon("search") }}
+      />
       <Tabs.Screen
         name="AddMeals"
         options={{ title: "Add Meal", tabBarIcon: tabIcon("add-circle") }}
       />
       <Tabs.Screen
-        name="Meals"
-        options={{ title: "All Meals", tabBarIcon: tabIcon("list") }}
+        name="Profile"
+        options={{ title: "Profile", tabBarIcon: tabIcon("person") }}
       />
     </Tabs>
   );
